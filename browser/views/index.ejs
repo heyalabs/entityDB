@@ -1,0 +1,70 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Entity Browser</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/highlight.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Left Panel: Entities -->
+    <div class="panel" id="left-panel">
+      <h2>Entities</h2>
+      <% if (entities) { %>
+        <ul>
+          <% entities.forEach((entity) => { %>
+            <li>
+              <a href="/ids?entity=<%= entity.entity %>">
+                <%= entity.entity %> (<%= entity.count %>)
+              </a>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </div>
+
+    <!-- Middle Panel: IDs -->
+    <div class="panel" id="middle-panel">
+      <% if (ids) { %>
+        <h2>IDs for <%= selectedEntity %></h2>
+        <ul>
+          <% ids.forEach((id) => { %>
+            <li>
+              <a href="/document?entity=<%= selectedEntity %>&id=<%= id %>&page=<%= page %>">
+                <%= id %>
+              </a>
+            </li>
+          <% }) %>
+        </ul>
+        <div class="pagination">
+          <% if (page > 1) { %>
+            <a href="/ids?entity=<%= selectedEntity %>&page=<%= page - 1 %>">Previous</a>
+          <% } %>
+          <span>Page <%= page %> of <%= totalPages %></span>
+          <% if (page < totalPages) { %>
+            <a href="/ids?entity=<%= selectedEntity %>&page=<%= page + 1 %>">Next</a>
+          <% } %>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- Right Panel: Document Content -->
+    <div class="panel" id="right-panel">
+      <% if (documentContent) { %>
+        <h2>Document Content</h2>
+        <pre><code class="json"><%= documentContent %></code></pre>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Include scripts -->
+  <script src="/highlight.js"></script>
+  <script>
+    hljs.highlightAll();
+  </script>
+  <script src="/script.js"></script>
+</body>
+</html>

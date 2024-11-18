@@ -1,0 +1,60 @@
+/* public/styles.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.panel {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Remove border from the rightmost panel */
+#right-panel {
+  border-right: none;
+}
+
+/* Resizable panels */
+.panel {
+  resize: horizontal;
+  overflow: auto;
+  min-width: 200px;
+}
+
+/* Styling for lists */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 10px;
+}
+
+.pagination a {
+  margin-right: 10px;
+}
